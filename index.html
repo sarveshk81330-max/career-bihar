@@ -1,140 +1,260 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CAREER BIHAR | Student Portal</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#07152f;color:white}
-header{padding:22px;text-align:center;background:#102b59;border-bottom:3px solid #d6ad50}
-.logo{font-size:29px;font-weight:bold;color:#f5cf72;letter-spacing:2px}
-header p{margin:8px 0 0;color:#dce6f8}
-main{max-width:540px;margin:35px auto;padding:18px}
-.card{background:#10264b;border:1px solid #c9a34e;border-radius:16px;padding:24px;box-shadow:0 8px 28px #0005}
-h2{text-align:center;color:#f5cf72}
-input,select{width:100%;padding:13px;margin:8px 0;border-radius:8px;border:1px solid #8295b5;background:#f7f9ff;color:#111;font-size:15px}
-button{width:100%;padding:13px;margin-top:12px;border:0;border-radius:8px;background:#d6ad50;color:#101c35;font-size:16px;font-weight:bold;cursor:pointer}
-.switch{text-align:center;margin-top:18px;color:#f5cf72;cursor:pointer}
-.hidden{display:none}
-.note{text-align:center;color:#cbd8ed;font-size:13px;line-height:1.6}
-#message{margin-top:15px;text-align:center;line-height:1.5}
-footer{text-align:center;padding:25px;color:#aebdd4;font-size:13px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a56">
+  <meta name="description" content="CAREER BIHAR - Bihar students learning and exam preparation platform">
+  <title>CAREER BIHAR | Learn • Practice • Succeed</title>
+
+  <style>
+    :root {
+      --navy: #102a56;
+      --blue: #174a8b;
+      --gold: #e5b94f;
+      --ink: #172033;
+      --muted: #64748b;
+      --paper: #f5f7fb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    header {
+      background: linear-gradient(120deg, var(--navy), var(--blue));
+      color: white;
+      padding: 18px 20px 55px;
+    }
+
+    .nav {
+      max-width: 1050px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: .8px;
+      font-size: 23px;
+    }
+
+    .brand span { color: var(--gold); }
+
+    .tag {
+      font-size: 12px;
+      color: #dbeafe;
+    }
+
+    .hero {
+      max-width: 1050px;
+      margin: 55px auto 0;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 7vw, 56px);
+      line-height: 1.08;
+      margin: 12px 0;
+    }
+
+    .hero p {
+      max-width: 620px;
+      color: #e4edff;
+      line-height: 1.7;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    a.btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 750;
+    }
+
+    .primary {
+      background: var(--gold);
+      color: #172033;
+    }
+
+    main {
+      max-width: 1050px;
+      margin: -22px auto 50px;
+      padding: 0 16px;
+    }
+
+    .section-title {
+      margin: 30px 0 14px;
+      font-size: 22px;
+      color: var(--navy);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e5eaf2;
+      border-radius: 14px;
+      padding: 18px;
+      min-height: 120px;
+      box-shadow: 0 5px 18px #102a5608;
+    }
+
+    .card b {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 7px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    footer {
+      text-align: center;
+      padding: 26px 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media(max-width:520px) {
+      header { padding-bottom: 45px; }
+      .hero { margin-top: 40px; }
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-<div class="logo">CAREER BIHAR</div>
-<p>Learn • Practice • Succeed</p>
-<p>बिहार के विद्यार्थियों का डिजिटल शिक्षा मंच</p>
-</header>
+  <header>
+    <div class="nav">
+      <div class="brand">CAREER <span>BIHAR</span></div>
+      <div class="tag">Hindi + English • Student Learning Platform</div>
+    </div>
 
-<main>
-<div class="card">
-<section id="register">
-<h2>Student Registration</h2>
-<p class="note">नया विद्यार्थी खाता बनाएँ</p>
-<form id="registerForm">
-<input id="name" placeholder="पूरा नाम / Full Name" required>
-<input id="mobile" type="tel" placeholder="मोबाइल नंबर / Mobile Number" required>
-<input id="email" type="email" placeholder="ईमेल / Email" required>
-<select id="board" required>
-<option value="">12वीं बोर्ड चुनें</option>
-<option>Bihar Board</option>
-<option>CBSE</option>
-<option>ICSE</option>
-<option>Other</option>
-</select>
-<input id="year" type="number" placeholder="12वीं पास करने का वर्ष" min="2000" max="2100" required>
-<input id="password" type="password" placeholder="अपना Password बनाएँ" minlength="8" required>
-<button type="submit">Register Now</button>
-</form>
-<p class="switch" onclick="showLogin()">पहले से खाता है? Login करें</p>
-</section>
+    <section class="hero">
+      <div class="eyebrow">LEARN • PRACTICE • SUCCEED</div>
 
-<section id="login" class="hidden">
-<h2>Student Login</h2>
-<form id="loginForm">
-<input id="loginEmail" type="email" placeholder="Email Address" required>
-<input id="loginPassword" type="password" placeholder="Password" required>
-<button type="submit">Login</button>
-</form>
-<p class="switch" onclick="showRegister()">नया खाता बनाएँ</p>
-</section>
+      <h1>आपकी तैयारी,<br>आपका अगला मुकाम।</h1>
 
-<div id="message"></div>
-<p class="note">खाता सक्रिय होने के लिए ईमेल सत्यापन और Owner की मंजूरी आवश्यक है।</p>
-</div>
-</main>
+      <p>
+        Mock Tests, Study Materials, Current Affairs और परीक्षा अभ्यास—
+        एक ही प्लेटफॉर्म पर।
+      </p>
 
-<footer>© 2026 CAREER BIHAR | All Rights Reserved</footer>
+      <div class="actions">
+        <a class="btn primary" href="#features">Explore Features</a>
+      </div>
+    </section>
+  </header>
 
-<script>
-const SUPABASE_URL = "https://bqbwtskzrafuawnqfzhc.supabase.co/rest/v1/";
-const SUPABASE_KEY = "sb_publishable_Xn_eXjjNI1JaXReoD8nH_Q_I2lvG4ch";
+  <main>
 
-const db = window.supabase.createClient(https://bqbwtskzrafuawnqfzhc.supabase.co/rest/v1/,sb_publishable_Xn_eXjjNI1JaXReoD8nH_Q_I2lvG4ch);
-const msg = document.getElementById("message");
+    <h2 class="section-title" id="features">
+      मुख्य सुविधाएँ / Key Features
+    </h2>
 
-function showLogin(){
- document.getElementById("register").classList.add("hidden");
- document.getElementById("login").classList.remove("hidden");
- msg.textContent="";
-}
-function showRegister(){
- document.getElementById("login").classList.add("hidden");
- document.getElementById("register").classList.remove("hidden");
- msg.textContent="";
-}
+    <div class="grid">
 
-document.getElementById("registerForm").addEventListener("submit",async(e)=>{
- e.preventDefault();
- msg.textContent="Registration हो रहा है...";
- const data={
-  full_name:document.getElementById("name").value.trim(),
-  mobile:document.getElementById("mobile").value.trim(),
-  board:document.getElementById("board").value,
-  passing_year:document.getElementById("year").value
- };
- const {error}=await db.auth.signUp({
-  email:document.getElementById("email").value.trim(),
-  password:document.getElementById("password").value,
-  options:{data}
- });
- if(error){msg.textContent="Error: "+error.message;return;}
- msg.textContent="Registration अनुरोध सफल! अपने Email को Verify करें। इसके बाद Owner की मंजूरी का इंतजार करें।";
- e.target.reset();
-});
+      <article class="card">
+        <b>Online Mock Test</b>
+        <p>समयबद्ध अभ्यास और परिणाम।</p>
+      </article>
 
-document.getElementById("loginForm").addEventListener("submit",async(e)=>{
- e.preventDefault();
- msg.textContent="Login जाँच हो रही है...";
- const {data,error}=await db.auth.signInWithPassword({
-  email:document.getElementById("loginEmail").value.trim(),
-  password:document.getElementById("loginPassword").value
- });
- if(error){msg.textContent="Login Error: "+error.message;return;}
- const {data:profile,error:profileError}=await db
-  .from("student_profiles")
-  .select("approval_status")
-  .eq("id",data.user.id)
-  .maybeSingle();
+      <article class="card">
+        <b>AI Question Generator</b>
+        <p>अभ्यास के लिए प्रश्न निर्माण और समीक्षा।</p>
+      </article>
 
- if(profileError || !profile){
-  await db.auth.signOut();
-  msg.textContent="Profile उपलब्ध नहीं है। कृपया सहायता लें।";
-  return;
- }
- if(profile.approval_status!=="approved"){
-  await db.auth.signOut();
-  msg.textContent="आपका Account अभी Pending Approval में है। Owner की मंजूरी के बाद Login करें।";
-  return;
- }
- msg.textContent="आपका Login सफल हुआ। Student Dashboard अभी निर्माणाधीन है।";
-});
-</script>
+      <article class="card">
+        <b>Study Material</b>
+        <p>विषयवार नोट्स और PDF सामग्री।</p>
+      </article>
+
+      <article class="card">
+        <b>Daily Current Affairs</b>
+        <p>बिहार, राष्ट्रीय और अंतरराष्ट्रीय अपडेट।</p>
+      </article>
+
+      <article class="card">
+        <b>Performance Report</b>
+        <p>अंक, सही उत्तर और प्रगति का विश्लेषण।</p>
+      </article>
+
+      <article class="card">
+        <b>Bihar Leaderboard</b>
+        <p>गोपनीयता-सुरक्षित रैंकिंग।</p>
+      </article>
+
+      <article class="card">
+        <b>College Result Portal</b>
+        <p>अधिकृत कॉलेज परिणाम जानकारी।</p>
+      </article>
+
+      <article class="card">
+        <b>Student Support</b>
+        <p>विद्यार्थियों के लिए सहायता सुविधा।</p>
+      </article>
+
+      <article class="card">
+        <b>Notification Center</b>
+        <p>महत्वपूर्ण शैक्षणिक सूचनाएँ।</p>
+      </article>
+
+      <article class="card">
+        <b>Question Bank</b>
+        <p>विभिन्न विषयों के अभ्यास प्रश्न।</p>
+      </article>
+
+      <article class="card">
+        <b>Digital Certificate</b>
+        <p>पाठ्यक्रम और अभ्यास प्रमाणपत्र।</p>
+      </article>
+
+      <article class="card">
+        <b>Anti-Cheating System</b>
+        <p>परीक्षा की निष्पक्षता के लिए सुरक्षा।</p>
+      </article>
+
+    </div>
+  </main>
+
+  <footer>
+    © CAREER BIHAR • Built for students in Bihar
+  </footer>
+
 </body>
 </html>
