@@ -1,5 +1,79 @@
 
 <!doctype html>
+
+<!-- CAREER BIHAR MOCK TEST START PAGE -->
+<section id="mock-test-start" style="max-width:650px;margin:30px auto;padding:24px;background:#0b1d3a;color:white;border:2px solid #d4af37;border-radius:15px;font-family:Arial,sans-serif;">
+  <h2 style="text-align:center;color:#f5d76e;">CAREER BIHAR</h2>
+  <h3 style="text-align:center;">Online Mock Test</h3>
+  <p style="text-align:center;">अपनी जानकारी भरकर Mock Test शुरू करें।</p>
+
+  <form id="mockTestForm">
+    <label>विद्यार्थी का पूरा नाम</label>
+    <input id="studentName" type="text" required placeholder="अपना नाम लिखें" style="width:100%;padding:12px;margin:8px 0 16px;box-sizing:border-box;">
+
+    <label>परीक्षा का प्रकार</label>
+    <select id="examType" required style="width:100%;padding:12px;margin:8px 0 16px;">
+      <option value="">चुनें</option>
+      <option>School (Class 9–12)</option>
+      <option>College</option>
+      <option>Bihar Exams</option>
+      <option>National Exams</option>
+    </select>
+
+    <label>विषय</label>
+    <select id="subject" required style="width:100%;padding:12px;margin:8px 0 16px;">
+      <option value="">विषय चुनें</option>
+      <option>Hindi</option>
+      <option>English</option>
+      <option>Mathematics</option>
+      <option>General Knowledge</option>
+      <option>Reasoning</option>
+      <option>General Science</option>
+      <option>Commerce</option>
+      <option>Other</option>
+    </select>
+
+    <label>भाषा</label>
+    <select id="testLanguage" style="width:100%;padding:12px;margin:8px 0 16px;">
+      <option>हिंदी</option>
+      <option>English</option>
+    </select>
+
+    <label>प्रश्नों की संख्या</label>
+    <select id="questionCount" style="width:100%;padding:12px;margin:8px 0 20px;">
+      <option value="10">10 प्रश्न (10 मिनट)</option>
+      <option value="25">25 प्रश्न (25 मिनट)</option>
+      <option value="50">50 प्रश्न (50 मिनट)</option>
+      <option value="100">100 प्रश्न (100 मिनट)</option>
+    </select>
+
+    <button type="submit" style="width:100%;padding:14px;background:#d4af37;color:#10213d;border:0;border-radius:8px;font-size:17px;font-weight:bold;">
+      Start Test
+    </button>
+  </form>
+
+  <p id="mockTestMessage" style="text-align:center;margin-top:15px;"></p>
+</section>
+
+<script>
+document.getElementById("mockTestForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("studentName").value.trim();
+  const exam = document.getElementById("examType").value;
+  const subject = document.getElementById("subject").value;
+  const language = document.getElementById("testLanguage").value;
+  const count = document.getElementById("questionCount").value;
+
+  if (!name) return;
+
+  document.getElementById("mockTestMessage").textContent =
+    "धन्यवाद " + name + "! आपकी टेस्ट सेटिंग तैयार है। प्रश्नों वाला पेज अगला चरण है।";
+});
+</script>
+</body>
+</html>
+
 <html lang="hi">
 <head>
   <meta charset="utf-8">
